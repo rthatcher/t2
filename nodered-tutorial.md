@@ -1,34 +1,71 @@
 ---
 layout: default
-title: Developer Tutorial
+title: Node-Red Tutorial
 category: tutorials
 section: tutorials
-index-order: 302
+index-order: 306
 sidebar: sidebars/accordion-toc0.md
-excerpt: "The developer tutorial will walk you through the steps required to build a Hyperledger Composer blockchain solution from scratch. In the space of a day or so you should be able to go from an idea for a disruptive blockchain innovation to a complete business network, running on {{site.data.conrefs.hlf_full}}."
+excerpt: "TBC"
 ---
 
-# Developer Tutorial for creating a {{site.data.conrefs.composer_full}} solution
+# Node-RED Tutorial for creating a {{site.data.conrefs.composer_full}} solution
 
-This tutorial will walk you through building a {{site.data.conrefs.composer_full}} blockchain solution from scratch. In the space of a few hours you will be able to go from an idea for a disruptive blockchain innovation, to executing transactions against a real {{site.data.conrefs.hlf_full}} blockchain network and generating/running a sample Angular 2 application that interacts with a blockchain network.
+In this tutorial, we will build on the [Developer Tutorial](./developer-tutorial.html), extending it to demonstrate how a Node-RED Flow can be used to add Participants or Assets to the registries on the {{site.data.conrefs.hlf_full}}
+
+[Node-RED](http://nodered.org) is a lightweight Open Source integration technology, written in JavaScript. It uses a graphical flow to integrate different _nodes_, where nodes can receive data, transform data and output data.
+
+Node-RED is commonly used to rapidly prototype Internet of Things style applications, or to wire existing Internet services together.
+
+You can use the {{site.data.conrefs.composer_full}} Node-RED contribution to:
+
+- Submit transactions
+- Read and update assets and participants
+- Subscribe to events
+- Delete assets and participants
 
 This tutorial gives an overview of the techniques and resources available to apply to your own use case.
 
-*Note:* This tutorial was written against the latest {{site.data.conrefs.composer_full}} build on Ubuntu Linux running with {{site.data.conrefs.hlf_full}} v1.0 where referenced below and also tested for a Mac environment.
-
+This tutorial uses the `tutorial-network` business network developed and deployed in the [Developer Tutorial](developer-tutorial.html).
 
 ## Prerequisites
 
 Before beginning this tutorial:
 
-- [Set up your development environment](../installing/development-tools.html)
-- Install an editor e.g. VSCode or Atom
+ - Complete the [development environment installation](../installing/development-tools.html).
+ - Complete the [developer tutorial](./developer-tutorial.html).
 
+This tutorial assumes the reader has some familiarity with Node-RED.  The [Node-RED](http://nodered.org) website has an introductory video and a getting started link.
+
+## Step One: Install Node-RED
+
+The
+
+## Step Two: Install Composer Nodes
+
+A 
+
+## Step Three: Install fs Node
+
+A 
+
+## Step Four: Build Flow
+
+A 
+
+## Step Five: Create Test Data
+
+A 
+
+## Step Six: Test Flow
+
+A 
+
+<!--  
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  Dev Tutorial In comment here for examples and structure - delete later
 ## Step One: Creating a business network structure
 
 The key concept for {{site.data.conrefs.composer}} is the **business network definition (BND)**. It defines the data model, transaction logic and access control rules for your blockchain solution. To create a BND,  we need to create a suitable project structure on disk.
 
-The easiest way to get started is to use the Yeoman generator to create a skeleton business network. This will create a directory containing all of the components of a business network.
 
 1. Create a skeleton business network using Yeoman. This command will require a business network name, description, author name, author email address, license selection and namespace.
 
@@ -196,13 +233,10 @@ Deploying a business network to the {{site.data.conrefs.hlf_full}} requires the 
 6. Select **No** when asked whether to enable TLS security.
 
 The generated API is connected to the deployed blockchain and business network.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-->
 
-<!--After generating a REST API,
-
-## Step Six: Generating an application
-
-
-**This section doesn't work yet so be chill k?**
-
-`yo hyperledger-composer`
+<!--  
+Example Image
+![Queries exposed as REST Endpoints](../assets/img/tutorials/nodered/rest-explorer-discover.png)
 -->
