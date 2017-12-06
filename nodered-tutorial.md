@@ -8,9 +8,9 @@ sidebar: sidebars/accordion-toc0.md
 excerpt: "TBC"
 ---
 
-# Node-RED Tutorial for creating a {{site.data.conrefs.composer_full}} solution
+# Node-RED Tutorial for Integrating a {{site.data.conrefs.composer_full}} Business Network
 
-In this tutorial, we will build on the [Developer Tutorial](./developer-tutorial.html), extending it to demonstrate how a Node-RED Flow can be used to add Participants or Assets to the registries on the {{site.data.conrefs.hlf_full}}
+In this tutorial, we will build on the [Developer Tutorial](./developer-tutorial.html), extending it to demonstrate how a Node-RED Flow can be used to add Participants or Assets to the registries on the {{site.data.conrefs.hlf_full}}.  
 
 [Node-RED](http://nodered.org) is a lightweight Open Source integration technology, written in JavaScript. It uses a graphical flow to integrate different _nodes_, where nodes can receive data, transform data and output data.
 
@@ -36,207 +36,122 @@ Before beginning this tutorial:
 
 This tutorial assumes the reader has some familiarity with Node-RED.  The [Node-RED](http://nodered.org) website has an introductory video and a getting started link.
 
-## Step One: Install Node-RED
+## Step One: Install and Start Node-RED
 
-The
+Node-RED is a Node.js application and should be installed on a {{site.data.conrefs.composer}} development environment with the following command `npm install -g node-red` 
+
+Use the following command to start Node-RED `node-red`
+
+The command output will show that Node-Red server is now running at http://127.0.0.1:1880/ - open this link in a Browser to see the Node-RED UI.
 
 ## Step Two: Install Composer Nodes
 
-A 
+The Composer Nodes for Node-RED are described here https://www.npmjs.com/package/node-red-contrib-composer and can be installed into Node-RED through the UI.
+
+On the Node-RED UI Menu, click **Manage palette**, the click on the **Install** tab.  In the **search modules** field type _node-red-contrib-composer_, then click the **Install** button and on the confirmation dialog click the red **Install** button.
+
+The nodes take a few moments to install, and a message will be shown in the UI and in the terminal window where Node-RED was started.
+
+Verify that the nodes are installed by scrolling to the end of the Palette on the left of the UI - a new category called **Hyperledger** should be at the bottom with the three nodes.
 
 ## Step Three: Install fs Node
 
-A 
+This tutorial uses JSON data from text files and needs additional nodes _node-red-contrib-fs_
+
+On the Node-RED UI Menu, click **Manage palette**, the click on the **Install** tab.  In the **search modules** field type _node-red-contrib-fs_, then click the **Install** button and on the confirmation dialog click the red **Install** button.
+
+Verify that the **fs file lister** node has been added to the Storage category on the Palette.
 
 ## Step Four: Build Flow
 
 A 
 
 ## Step Five: Create Test Data
+#### Create text files for new Participants
+Using a text editor such as vi or gedit , create a text file called /home/_username_/tutorial-network/testdata/traders/trader4.json with the following contents
+```
+{
+  "$class": "org.acme.biznet.Trader",
+  "tradeId": "TRADER4",
+  "firstName": "John",
+  "lastName": "Smith"
+}
+```
 
-A 
+Create two more JSON text files for trader5 and trader6 with the following data
+```
+{
+  "$class": "org.acme.biznet.Trader",
+  "tradeId": "TRADER5",
+  "firstName": "Simon",
+  "lastName": "Jenkins"
+}
+```
+```
+{
+  "$class": "org.acme.biznet.Trader",
+  "tradeId": "TRADER6",
+  "firstName": "Susan",
+  "lastName": "Stone"
+}
+```
+
+#### Create text files for new Commodities
+Create a text file called /home/_username_/tutorial-network/testdata/commodities/diamond.json with the following contents
+```
+{
+  "$class": "org.acme.biznet.Commodity",
+  "tradingSymbol": "DIA",
+  "description": "Diamond commodity",
+  "mainExchange": "Jewel",
+  "quantity": 1.45,
+  "owner": "resource:org.acme.biznet.Trader#TRADER6"
+}
+```
+
+Create two more JSON text files for apple and oil with the following data
+```
+{
+  "$class": "org.acme.biznet.Commodity",
+  "tradingSymbol": "APP",
+  "description": "Apple commodity",
+  "mainExchange": "Food",
+  "quantity": 234500,
+  "owner": "resource:org.acme.biznet.Trader#TRADER4"
+}
+```
+
+```
+{
+ "$class": "org.acme.biznet.Commodity",
+ "tradingSymbol": "CL",
+ "description": "Crude Oil",
+ "mainExchange": "NYMEX",
+ "quantity": 35,
+ "owner": "resource:org.acme.biznet.Trader#TRADER3"
+}
+```
+
 
 ## Step Six: Test Flow
 
 A 
 
+
+
 <!--  
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  Dev Tutorial In comment here for examples and structure - delete later
-## Step One: Creating a business network structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### Sub-sub example
 
-The key concept for {{site.data.conrefs.composer}} is the **business network definition (BND)**. It defines the data model, transaction logic and access control rules for your blockchain solution. To create a BND,  we need to create a suitable project structure on disk.
+Composer name example {{site.data.conrefs.composer}} 
 
+BOLD example **business network definition (BND)**. It 
+Itailc _here_ 
 
-1. Create a skeleton business network using Yeoman. This command will require a business network name, description, author name, author email address, license selection and namespace.
-
-        yo hyperledger-composer:businessnetwork
-
-2. Enter `tutorial-network` for the network name, and desired information for description, author name, and author email.
-
-3. Select `Apache-2.0` as the license.
-
-4. Select `org.acme.biznet` as the namespace.
-
-## Step Two: Defining a business network
-
-A business network is made up of assets, participants, transactions, access control rules, and optionally events and queries. In the skeleton business network created in the previous steps, there is a model (`.cto`) file which will contain the class definitions for all assets, participants, and transactions in the business network. The skeleton business network also contains an access control (`permissions.acl`) document with basic access control rules, a script (`logic.js`) file containing transaction processor functions, and a `package.json` file containing business network metadata.
-
-#### Modelling assets, participants, and transactions
-
-The first document to update is the model (`.cto`) file. This file is written using the [{{site.data.conrefs.composer_full}} Modelling Language](../reference/cto_language.html). The model file contains the definitions of each class of asset, transaction, participant, and event. It implicitly extends the {{site.data.conrefs.composer_full}} System Model described in the modelling language documentation.
-
-1. Open the `org.acme.biznet.cto` model file.
-
-2. Replace the contents with the following:
-
-        /**
-         * My commodity trading network
-         */
-        namespace org.acme.biznet
-        asset Commodity identified by tradingSymbol {
-            o String tradingSymbol
-            o String description
-            o String mainExchange
-            o Double quantity
-            --> Trader owner
-        }
-        participant Trader identified by tradeId {
-            o String tradeId
-            o String firstName
-            o String lastName
-        }
-        transaction Trade {
-            --> Commodity commodity
-            --> Trader newOwner
-        }
-
-3. Save your changes to `org.acme.biznet.cto`.
-
-#### Adding JavaScript transaction logic
-
-In the model file, a `Trade` transaction was defined, specifying a relationship to an  asset, and a participant. The transaction processor function file contains the JavaScript logic to execute the transactions defined in the model file.
-
-The `Trade` transaction is intended to simply accept the identifier of the `Commodity` asset which is being traded, and the identifier of the `Trader` participant to set as the new owner.
-
-1. Open the `logic.js` script file.
-
-2. Replace the contents with the following:
-
-        /**
-         * Track the trade of a commodity from one trader to another
-         * @param {org.acme.biznet.Trade} trade - the trade to be processed
-         * @transaction
-         */
-        function tradeCommodity(trade) {
-            trade.commodity.owner = trade.newOwner;
-            return getAssetRegistry('org.acme.biznet.Commodity')
-                .then(function (assetRegistry) {
-                    return assetRegistry.update(trade.commodity);
-                });
-        }
-
-3. Save your changes to `logic.js`.
-
-#### Adding access control
-
-1. Create a `permissions.acl` file in the `tutorial-network` directory.
-
-2. Add the following access control rules to `permissions.acl`:
-
-        /**
-         * Access control rules for tutorial-network
-         */
-        rule Default {
-            description: "Allow all participants access to all resources"
-            participant: "ANY"
-            operation: ALL
-            resource: "org.acme.biznet.*"
-            action: ALLOW
-        }
-
-        rule SystemACL {
-          description:  "System ACL to permit all access"
-          participant: "ANY"
-          operation: ALL
-          resource: "org.hyperledger.composer.system.**"
-          action: ALLOW
-        }
-
-3. Save your changes to `permissions.acl`.
-
-## Step Three: Generate a business network archive
-
-Now that the business network has been defined, it must be packaged into a deployable business network archive (`.bna`) file.
-
-1. Using the command line, navigate to the `tutorial-network` directory.
-
-2. From the `tutorial-network` directory, run the following command:
-
-        composer archive create -t dir -n .
-
-After the command has run, a business network archive file called `tutorial-network@0.0.1.bna` has been created in the `tutorial-network` directory.
-
-## Step Four: Deploying the business network
-
-After creating the `.bna` file, the business network can be deployed to the instance of {{site.data.conrefs.hlf_full}}. Normally, information from the Fabric administrator is required to create a `PeerAdmin` identity, with privileges to deploy chaincode to the peer. However, as part of the development environment installation, a `PeerAdmin` identity has been created already.
-
-After the runtime has been installed, a business network can be deployed to the peer. For best practice, a new identity should be created to administrate the business network after deployment. This identity is referred to as a network admin.
-
-#### Retrieving the correct credentials
-
-A `PeerAdmin` business network card with the correct credentials is already created as part of development environment installation.
-
-#### Deploying the business network
-
-Deploying a business network to the {{site.data.conrefs.hlf_full}} requires the {{site.data.conrefs.composer_full}} chaincode to be installed on the peer, then the business network archive (`.bna`) must be sent to the peer, and a new participant, identity, and associated card must be created to be the network administrator. Finally, the network administrator business network card must be imported for use, and the network can then be pinged to check it is responding.
-
-1. To install the composer runtime, run the following command:
-
-        composer runtime install --card PeerAdmin@hlfv1 --businessNetworkName tutorial-network
-
-    The `composer runtime install` command requires a PeerAdmin business network card (in this case one has been created and imported in advance), and the name of the business network.
-
-2. To deploy the business network, from the `tutorial-network` directory, run the following command:
-
-        composer network start --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdminEnrollSecret adminpw --archiveFile tutorial-network@0.0.1.bna --file networkadmin.card
-
-    The `composer network start` command requires a business network card, as well as the name of the admin identity for the business network, the file path of the `.bna` and the name of the file to be created ready to import as a business network card.
-
-3. To import the network administrator identity as a usable business network card, run the following command:
-
-        composer card import --file networkadmin.card
-
-    The `composer card import` command requires the filename specified in `composer network start` to create a card.
-
-4. To check that the business network has been deployed successfully, run the following command to ping the network:
-
-        composer network ping --card admin@tutorial-network
-
-  The `composer network ping` command requires a business network card to identify the network to ping.
-
-## Step Five: Generating a REST server
-
-{{site.data.conrefs.composer_full}} can generate a bespoke REST API based on a business network. For developing a web application, the REST API provides a useful layer of language-neutral abstraction.
-
-1. To create the REST API, navigate to the `tutorial-network` directory and run the following command:
-
-        composer-rest-server
-
-2. Enter `admin@tutorial-network` as the card name.
-
-3. Select **never use namespaces** when asked whether to use namespaces in the generated API.
-
-4. Select **No** when asked whether to secure the generated API.
-
-5. Select **Yes** when asked whether to enable event publication.
-
-6. Select **No** when asked whether to enable TLS security.
-
-The generated API is connected to the deployed blockchain and business network.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--->
 
-<!--  
 Example Image
 ![Queries exposed as REST Endpoints](../assets/img/tutorials/nodered/rest-explorer-discover.png)
+
+
 -->
