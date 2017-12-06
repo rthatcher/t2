@@ -48,27 +48,27 @@ The command output will show that Node-Red server is now running at http://127.0
 
 The Composer Nodes for Node-RED are described here https://www.npmjs.com/package/node-red-contrib-composer and can be installed into Node-RED through the UI.
 
-On the Node-RED UI Menu, click **Manage palette**, the click on the **Install** tab.  In the **search modules** field type _node-red-contrib-composer_, then click the **Install** button and on the confirmation dialog click the red **Install** button.
+1. On the Node-RED UI Menu, click **Manage palette**, the click on the **Install** tab.  In the **search modules** field type _node-red-contrib-composer_, then click the **Install** button and on the confirmation dialog click the red **Install** button.
 
 The nodes take a few moments to install, and a message will be shown in the UI and in the terminal window where Node-RED was started.
 
-Verify that the nodes are installed by scrolling to the end of the Palette on the left of the UI - a new category called **Hyperledger** should be at the bottom with the three nodes.
+2. Verify that the nodes are installed by scrolling to the end of the Palette on the left of the UI - a new category called **Hyperledger** should be at the bottom with the three nodes.
 
 ## Step Three: Install fs Node
 
 This tutorial uses JSON data from text files and needs additional nodes _node-red-contrib-fs_
 
-On the Node-RED UI Menu, click **Manage palette**, the click on the **Install** tab.  In the **search modules** field type _node-red-contrib-fs_, then click the **Install** button and on the confirmation dialog click the red **Install** button.
+1. On the Node-RED UI Menu, click **Manage palette**, the click on the **Install** tab.  In the **search modules** field type _node-red-contrib-fs_, then click the **Install** button and on the confirmation dialog click the red **Install** button.
 
-Verify that the **fs file lister** node has been added to the Storage category on the Palette.
+2. Verify that the **fs file lister** node has been added to the Storage category on the Palette.
 
 ## Step Four: Build Flow
 
 A 
 
 ## Step Five: Create Test Data
-#### Create text files for new Participants
-Using a text editor such as vi or gedit , create a text file called /home/_username_/tutorial-network/testdata/traders/trader4.json with the following contents
+#### Create JSON text files for new Participants
+Using a text editor such as vi or gedit , create a text file called **/home/_username_/tutorial-network/testdata/traders/trader4.json** with the following contents
 ```
 {
   "$class": "org.acme.biznet.Trader",
@@ -78,7 +78,7 @@ Using a text editor such as vi or gedit , create a text file called /home/_usern
 }
 ```
 
-Create two more JSON text files for trader5 and trader6 with the following data
+Create two more JSON text files for **trader5** and **trader6** with the following data
 ```
 {
   "$class": "org.acme.biznet.Trader",
@@ -96,8 +96,8 @@ Create two more JSON text files for trader5 and trader6 with the following data
 }
 ```
 
-#### Create text files for new Commodities
-Create a text file called /home/_username_/tutorial-network/testdata/commodities/diamond.json with the following contents
+#### Create JSON text files for new Commodities
+Create a text file called **/home/_username_/tutorial-network/testdata/commodities/diamond.json** with the following contents
 ```
 {
   "$class": "org.acme.biznet.Commodity",
@@ -109,7 +109,7 @@ Create a text file called /home/_username_/tutorial-network/testdata/commodities
 }
 ```
 
-Create two more JSON text files for apple and oil with the following data
+Create two more JSON text files for **apple** and **oil** with the following data
 ```
 {
   "$class": "org.acme.biznet.Commodity",
