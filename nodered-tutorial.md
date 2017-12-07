@@ -65,7 +65,8 @@ This tutorial uses JSON data from text files and needs additional nodes _node-re
 ## Step Four: Build Flow
 
 The image below shows what the completed flow will look like.
-<!-- ![Queries exposed as REST Endpoints](../assets/img/tutorials/nodered/nodered-flow.png) -->
+![Node RED Flow](nodered-flow.png)
+<!-- ![Node RED Flow](../assets/img/tutorials/nodered/nodered-flow.png) -->
 
 **Drag** the nodes from the palette on the left onto the Flow.
 
@@ -73,7 +74,7 @@ The image below shows what the completed flow will look like.
 
 The types and properties of the six nodes are described below:
 
-###### 1. **inject** node (from input category) - _Start_
+##### 1. **inject** node (from input category) - _Start_
 
 Set the properties for this node:
  -  Payload - timestamp
@@ -82,19 +83,20 @@ Set the properties for this node:
  -  Inject once at start? - <unchecked\>
  -  Name - Start
 
-###### 2. **fs file lister** node (from storage category) - _Read JSON Files_
+##### 2. **fs file lister** node (from storage category) - _Read JSON Files_
 
 Set the properties for this node:
- -  Start Folder - /home/<username\>/tutorial-network/testdata/traders/ \*
+ -  Start Folder - /home/<username\>/tutorial-network/testdata/traders/  \*
  -  File Pattern - \*.json
  -  Include full path in output? - <checked\>
  -  Output single message (array)? - <unchecked\>
  -  Max, search depth - 0
  -  Return file details? - <unchecked\>
  -  Name - Read JSON Files
+
 \* On Ubuntu Linux substitute <username\> for the logged in user.  On Mac adjust the Foldername to reflect your system. 
 
-###### 3. **change** node (from function category) - _Set Filename_
+##### 3. **change** node (from function category) - _Set Filename_
 
 Set the properties for this node:
  -  Name - Set Filename
@@ -102,7 +104,7 @@ Set the properties for this node:
     -  Set - msg.filename
     -  to - msg.payload
 
-###### 4. **file in** node (from storage category) - _Read JSON File_
+##### 4. **file in** node (from storage category) - _Read JSON File_
 
 Set the properties for this node:
  -  **Filename** - <empty\>
@@ -110,13 +112,13 @@ Set the properties for this node:
  -  **Send message on error (legacy mode)** - <checked\>
  -  **Name** - Read JSON File
 
-###### 5. **json** node (from function category) - _Set JSON_
+##### 5. **json** node (from function category) - _Set JSON_
 
 Set the properties for this node:
  -  **Name** - _Set JSON_
  -  **Format JSON string** - _<checked\>_
 
-###### 6. **composer** out node (from Hyperledger category) - _Create Trader_
+##### 6. **composer** out node (from Hyperledger category) - _Create Trader_
 
 Set the properties for this node:
  -  Name - _Create Trader_
