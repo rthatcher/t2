@@ -82,6 +82,7 @@ Set the properties for this node:
  -  Repeat - none
  -  Inject once at start? - <unchecked\>
  -  Name - Start
+In this flow the inject node is being used primarily to initiate the flow, rather than to inject data.  In this flow the data will come from JSON files on disk.
 
 ##### 2. **fs file lister** node (from storage category) - _Read JSON Files_
 
@@ -94,7 +95,7 @@ Set the properties for this node:
  -  Return file details? - <unchecked\>
  -  Name - Read JSON Files
 
-\* On Ubuntu Linux substitute <username\> for the logged in user.  On Mac adjust the Foldername to reflect your system. 
+\* On Ubuntu Linux substitute <username\> for the logged in user.  On Mac adjust the Foldername to reflect your system.  In the next step of the tutorial test data will be created in this folder.  Use the full path of the folder - using the \~/ notation to indicate the user's home folder will cause an error.
 
 ##### 3. **change** node (from function category) - _Set Filename_
 
@@ -104,6 +105,8 @@ Set the properties for this node:
     -  Set - msg.filename
     -  to - msg.payload
 
+This node sets the filename variable for the next node in the flow.
+
 ##### 4. **file in** node (from storage category) - _Read JSON File_
 
 Set the properties for this node:
@@ -112,11 +115,15 @@ Set the properties for this node:
  -  **Send message on error (legacy mode)** - <checked\>
  -  **Name** - Read JSON File
 
+This node reads the JSON test data file into a String variable.
+
 ##### 5. **json** node (from function category) - _Set JSON_
 
 Set the properties for this node:
  -  **Name** - _Set JSON_
  -  **Format JSON string** - _<checked\>_
+
+This node converts the JSON string into a JavaScript object for the next node in the flow.
 
 ##### 6. **composer** out node (from Hyperledger category) - _Create Trader_
 
@@ -198,21 +205,23 @@ Create two more JSON text files for **apple** and **oil** with the following dat
 
 ## Step Six: Test Flow
 
-A 
+1. Click on the left edge of the **Start** node to test the flow. 
+2. Use the Playground, REST server or the following command to validate that the test data has been added `composer network list -c admin@tutorial-network`
 
+## Possible errors
+Any Errors will be dislayed on the debug tab in the UI, and on the terminal window where Node-RED was started.
+**\[error\] \[fs-file-lister:Read JSON Files\] Error processing folder listing**  -  
+Incorrectly specified folder name in **Read JSON Files** Node.
 
+**\[error\] \[hyperledger-composer-out:Create Trader\] Error: creating resource error Namespace is not defined for type org.acme.biznetttt.Commodity**  -
+Errors in the test data - namespace errors or formatting errors in the JSON files.
+
+**\[error\] \[hyperledger-composer-out:Create Trader\] Error trying to query business network. Error: Connect FailedFabric**  -
+Containers not started - use `docker ps` to check.
+
+**\[error] \[hyperledger-composer-out:Create Trader\] Error: creating resource error Card not found: admin@exampleyz-networkWrong Business Network Card specified**  - 
+verify card name by using `composer card list` on command line.
 
 <!--  
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### Sub-sub example
-
-Composer name example {{site.data.conrefs.composer}} 
-
-BOLD example **business network definition (BND)**. It 
-Itailc _here_ 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Example Image
-![Queries exposed as REST Endpoints](../assets/img/tutorials/nodered/rest-explorer-discover.png)
+Do we add another flow for the events ?
 -->
