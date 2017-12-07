@@ -137,8 +137,9 @@ Set the properties for this node:
 
 **Click** the pencil icon to add a new Composer Card.
  -  **Card Name** - _admin\@tutorial-network_
+This is the |Hyperledger Composer node that will connect to the Business Network on the Fabric and submit the Transaction.
 
-Remember to click the **Deploy** button to save the flow.
+Remember to click the red **Deploy** button to save the flow.
 
 
 ## Step Five: Create Test Data
