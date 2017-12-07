@@ -72,11 +72,17 @@ _Double click_ the nodes to edit the properties.
 The types and properties of the six nodes are described below:
 
 1. **inject** node (from input category) - _Start_
+
 Set the properties for this node:
+
   Payload - timestamp
+
   Topic - <empty\>
+
   Repeat - none
+
   Inject once at start? - <unchecked\>
+
   Name - Start
 
 2. **fs file lister** node (from storage category) - _Read JSON Files_
