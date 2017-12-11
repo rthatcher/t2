@@ -10,7 +10,7 @@ excerpt: "TBC"
 
 # Node-RED Tutorial for Integrating a {{site.data.conrefs.composer_full}} Business Network
 
-In this tutorial, we will build on the [Developer Tutorial](./developer-tutorial.html), extending it to demonstrate how a Node-RED Flow can be used to add Participants or Assets to the registries on the {{site.data.conrefs.hlf_full}}.  
+This tutorial demonstrates how to integrate an existing system of record data source into the blockchain ledger.  In this guide, we will build on the [Developer Tutorial](./developer-tutorial.html), extending it to bulk load records from a JSON text file data source to populate Participant and Asset registries in the sample 'Commodity Trading' business network.  
 
 [Node-RED](http://nodered.org) is a lightweight Open Source integration technology, written in JavaScript. It uses a graphical flow to integrate different _nodes_, where nodes can receive data, transform data and output data.
 
@@ -22,6 +22,7 @@ You can use the {{site.data.conrefs.composer_full}} Node-RED contribution to:
 - Read and update assets and participants
 - Subscribe to events
 - Delete assets and participants
+- Perform a bulk load (eg. loading test data)
 
 This tutorial gives an overview of the techniques and resources available to apply to your own use case.
 
