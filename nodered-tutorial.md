@@ -75,7 +75,7 @@ The image below shows what the completed flow will look like.
 
 **Drag** the nodes from the palette on the left onto the Flow.
 
-**Double click** the nodes to edit the properties.
+**Double click** on a node to edit the properties.
 
 The types and properties of the six nodes are described below:
 
@@ -92,7 +92,7 @@ In this flow the inject node is being used primarily to initiate the flow, rathe
 ##### 2. **fs file lister** node (from storage category) - _Read JSON Files_
 
 Set the properties for this node:
- -  **Start Folder** - _/home/<username\>/tutorial-network/testdata/traders/_  \*
+ -  **Start Folder** - _/home/<username\>/tutorial-network/testdata/traders/_  
  -  **File Pattern** - _\*.json_
  -  **Include full path in output?** - _<checked\>_
  -  **Output single message (array)?** - _<unchecked\>_
@@ -100,7 +100,7 @@ Set the properties for this node:
  -  **Return file details?** - _<unchecked\>_
  -  **Name** - _Read JSON Files_
 
-\* On Ubuntu Linux substitute <username\> for the logged in user.  On Mac adjust the Foldername to reflect your system.  In the next step of the tutorial test data will be created in this folder.  Use the full path of the folder - using the \~/ notation to indicate the user's home folder will cause an error.
+For the **Start Folder**, on Ubuntu Linux substitute <username\> for the logged in user.  On Mac adjust the Foldername to reflect your system.  In the next step of the tutorial test data will be created in this folder.  Use the full path of the folder - using the \~/ notation to indicate the user's home folder will cause an error.
 
 ##### 3. **change** node (from function category) - _Set Filename_
 
@@ -108,7 +108,7 @@ Set the properties for this node:
  -  **Name** - _Set Filename_
  -  **Rules**
     -  **Set** - _msg.filename_
-    -  **to** - _msg.payload_
+    -  **to** - _msg.payload_  (Be sure to change the dropdown to _msg_ )
 
 This node sets the filename variable for the next node in the flow.
 
@@ -140,6 +140,7 @@ Set the properties for this node:
  -  **Card Name** - _admin\@tutorial-network_
 This is the |Hyperledger Composer node that will connect to the Business Network on the Fabric and submit the Transaction.
 
+After you have set the properties on all the nodes, **Wire the nodes together** as shown in the diagram above.
 Remember to click the red **Deploy** button to save the flow.
 
 
@@ -205,7 +206,7 @@ Create two more JSON text files for **apple** and **oil** with the following dat
  "description": "Crude Oil",
  "mainExchange": "NYMEX",
  "quantity": 35,
- "owner": "resource:org.acme.biznet.Trader#TRADER3"
+ "owner": "resource:org.acme.biznet.Trader#TRADER5"
 }
 ```
 
@@ -220,7 +221,7 @@ Create two more JSON text files for **apple** and **oil** with the following dat
 In the previous step the flow has been run and the participants (Traders) have been added.  Test data has been created for new Assets (Commodities) and a small re-configuration is required to add them.
 1. **Double Click** the **Read JSON Files** node and modify the property **Start Folder** to reference your commodities test data folder.
 2. **Click** the **Deploy** buton the save and deploy the change.
-3. **Start** the flow and validate that the test data has been added.
+3. **Start** the flow and validate that the Commodity test data has been added.
 
 
 ## Possible errors
